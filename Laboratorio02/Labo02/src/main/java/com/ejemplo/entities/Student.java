@@ -17,7 +17,11 @@ public class Student {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+    @Column(name="nombre")
     private String nombre;
+
+    @Column(name="correo")
     private String correo;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
