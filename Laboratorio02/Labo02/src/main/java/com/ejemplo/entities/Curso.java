@@ -1,5 +1,6 @@
 package com.ejemplo.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,5 +23,6 @@ public class Curso {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "estudiante_id")
+    @JsonBackReference
     private Student estudiante;
 }

@@ -1,5 +1,6 @@
 package com.ejemplo.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,9 +19,10 @@ public class Direccion {
     @Column(name="ciudad")
     private String ciudad;
 
-    @Column(name="nombre")
+    @Column(name="pais")
     private String pais;
 
     @OneToOne(mappedBy = "direccion", fetch = FetchType.LAZY)
+    @JsonBackReference
     private Student estudiante;
 }

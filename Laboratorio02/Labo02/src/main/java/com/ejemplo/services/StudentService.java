@@ -11,8 +11,7 @@ import org.springframework.stereotype.Service;
 public class StudentService {
 
 
-    @Autowired
-    private StudentRepository studentRepository;
+    @Autowired private StudentRepository studentRepository;
 
     public List<Student> getAll() {
         return studentRepository.findAll();
@@ -22,8 +21,6 @@ public class StudentService {
         return studentRepository.save(student);
     }
 
-
-    public List<Student> getByNombre(String nombre) {
-        return studentRepository.findByNombre(nombre);
-    }
+    public List<Student> byNombre(String n)       { return studentRepository.findByNombre(n); }
+    public List<Student> byPaisNative(String p)   { return studentRepository.findNativeByPais(p); }
 }
