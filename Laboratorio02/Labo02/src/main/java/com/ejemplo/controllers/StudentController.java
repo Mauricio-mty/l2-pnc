@@ -22,4 +22,9 @@ public class StudentController {
     public List<Student> porCorreo(@PathVariable("correo") String correo) {
         return service.byCorreo(correo);
     }
+
+    @GetMapping("/curso/{cursoId}")
+    public List<Student> estudiantesPorCurso(@PathVariable Long cursoId) {
+        return service.byCursoId(cursoId);
+    }
 }

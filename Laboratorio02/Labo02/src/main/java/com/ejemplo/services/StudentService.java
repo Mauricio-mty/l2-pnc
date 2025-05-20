@@ -21,6 +21,9 @@ public class StudentService {
         return studentRepository.save(student);
     }
 
-    public List<Student> byNombre(String n)       { return studentRepository.findByNombre(n); }
     public List<Student> byCorreo(String p)   { return studentRepository.findByCorreo(p); }
+
+    public List<Student> byCursoId(Long cursoId) {
+        return studentRepository.findDistinctByCursos_Id(cursoId);
+    }
 }
