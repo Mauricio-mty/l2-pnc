@@ -22,5 +22,5 @@ public class StudentService {
     }
 
     public List<Student> byNombre(String n)       { return studentRepository.findByNombre(n); }
-    public List<Student> byPaisNative(String p)   { return studentRepository.findNativeByPais(p); }
+    public List<Student> byCorreo(String p)   { return studentRepository.findByCorreo(p); }
 }

@@ -18,13 +18,8 @@ public class StudentController {
         return service.getAll();
     }
 
-    @GetMapping("/nombre")
-    public List<Student> porNombre(@RequestParam String nombre) {
-        return service.byNombre(nombre);
-    }
-
-    @GetMapping("/pais-native")
-    public List<Student> porPaisNative(@RequestParam String pais) {
-        return service.byPaisNative(pais);
+    @GetMapping("/correo/{correo}")
+    public List<Student> porCorreo(@PathVariable("correo") String correo) {
+        return service.byCorreo(correo);
     }
 }

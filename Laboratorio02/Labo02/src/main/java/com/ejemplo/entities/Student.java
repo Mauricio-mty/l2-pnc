@@ -1,6 +1,8 @@
 package com.ejemplo.entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +16,10 @@ import java.util.List;
 @Table(name = "estudiantes")
 @Getter
 @NoArgsConstructor
-
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id"
+)
 public class Student {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,17 +29,18 @@ public class Student {
     @Column(name="correo")
     private String correo;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "direccion_id")
-    @JsonManagedReference
+    @OneToOne(mappedBy = "estudiante",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY)
     private Direccion direccion;
 
     @OneToMany(mappedBy = "estudiante",
-            cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY)
     private List<Curso> cursos = new ArrayList<>();
 
-    // Setter manual para sincronizar uno-a-uno
     public void setDireccion(Direccion direccion) {
         if (this.direccion != null) {
             this.direccion.setEstudiante(null);
